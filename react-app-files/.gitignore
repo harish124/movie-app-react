@@ -1,0 +1,89 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+ 
+ # Dependency directories
+node_modules/
+
+# Build directories
+build/
+dist/
+
+# Local env files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Log files
+*.log
+
+# OS-specific files
+.DS_Store       # macOS
+Thumbs.db       # Windows
+
+# IDE specific files
+.vscode/         # VSCode
+.idea/           # JetBrains IDEs (WebStorm, PhpStorm, etc.)
+
+# npm / yarn
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Next.js (if using Next.js with React)
+.next/
+out/
+
+# Create React App (CRA) specific
+.craco.config.js  # if using CRACO
+.react/
+
+# TypeScript (if using TypeScript)
+*.tsbuildinfo
+
+# Storybook (if using Storybook)
+storybook-static/
+
+# Parcel (if using Parcel bundler)
+.cache/
+
+# Expo (if using Expo)
+.expo/
+
+# MacOS and Windows specific files
+*.swp             # Vim swap files
+*.swo             # Vim swap files
+
+# Coverage directory (for tests)
+coverage/
+
+# Build output
+build/
+
+# Miscellaneous
+*.bak
+*.tmp
+
