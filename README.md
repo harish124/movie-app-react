@@ -30,19 +30,21 @@ Movie data can be added, updated, and deleted via dedicated backend endpoints, t
 
 ## Architecture
 
+```
 +-------------------------------+
 | React Frontend (Port: 8086) |
 +-------------------------------+
-|
-v
+             |
+             v
 +-------------------------------+
 | Spring Boot Backend (Port: 8085) |
 +-------------------------------+
-|
-v
+             |
+             v
 +-------------------------------+
 | Elasticsearch (Search Engine) |
 +-------------------------------+
+```
 
 The frontend communicates with the backend via RESTful APIs.  
 The backend handles all data interactions with Elasticsearch.
