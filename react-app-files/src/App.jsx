@@ -4,7 +4,7 @@ import Search from "./components/Search.jsx"
 import Spinner from "./components/Spinner.jsx";
 import MovieCard from "./components/MovieCard.jsx";
 
-const API_BASE_URL = "http://localhost:8080/";
+const API_BASE_URL = "http://localhost:8080/v1/movies-data";
 const API_KEY = import.meta.env.SB_API_KEY;
 const API_OPTIONS = {
     method: 'GET',
@@ -19,18 +19,19 @@ const App = () => {
     const [movies, setMovies] = useState([]);
     const [isLoading, setLoading] = useState(false);
 
-    const fetchMovies = async () => {
+    const fetchMovies = async (query = '') => {
         setLoading(true);
         setErrorMsg('');
         try {
-            const endpoint = `${API_BASE_URL}/movies`;
+            const endpoint = query ? `${API_BASE_URL}/getMoviesContainingChars?characters=${searchTerm}`
+                : `${API_BASE_URL}/getMovies`;
             const response = await fetch(endpoint, API_OPTIONS);
 
             if (!response.ok) {
                 throw new Error("Error while fetching movies data");
             }
             const data = await response.json();
-            console.log(JSON.stringify(data));
+            //console.log(JSON.stringify(data));
             setMovies(data || []);
         }
         catch (error) {
@@ -43,8 +44,8 @@ const App = () => {
     }
 
     useEffect(() => {
-        fetchMovies()
-    }, [])
+        fetchMovies(searchTerm)
+    }, [searchTerm])
 
     return (
         <main>
@@ -68,7 +69,7 @@ const App = () => {
                                     <ul>
                                         {
                                             movies.map((m) =>
-                                                <MovieCard key={m._id} movie={m} />
+                                                <MovieCard key={m.id} movie={m} />
                                             )
                                         }
                                     </ul>

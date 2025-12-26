@@ -86,4 +86,6 @@ build/
 # Miscellaneous
 *.bak
 *.tmp
-
+.gitattributes
+.mvn
+*.jar
