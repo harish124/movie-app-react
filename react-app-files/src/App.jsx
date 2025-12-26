@@ -1,11 +1,11 @@
 import React from "react"
+import { useDebounce } from "react-use";
 import { useEffect, useState } from "react";
 import Search from "./components/Search.jsx"
 import Spinner from "./components/Spinner.jsx";
 import MovieCard from "./components/MovieCard.jsx";
 
 const API_BASE_URL = "http://localhost:8080/v1/movies-data";
-const API_KEY = import.meta.env.SB_API_KEY;
 const API_OPTIONS = {
     method: 'GET',
     headers: {
@@ -15,9 +15,12 @@ const API_OPTIONS = {
 }
 const App = () => {
     const [searchTerm, setSearchTerm] = useState('');
+    const [debouncedSearchTerm, setDevouncedSearchTerm] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
     const [movies, setMovies] = useState([]);
     const [isLoading, setLoading] = useState(false);
+
+    useDebounce(() => setDevouncedSearchTerm(searchTerm), 500, [searchTerm]);
 
     const fetchMovies = async (query = '') => {
         setLoading(true);
@@ -44,8 +47,8 @@ const App = () => {
     }
 
     useEffect(() => {
-        fetchMovies(searchTerm)
-    }, [searchTerm])
+        fetchMovies(debouncedSearchTerm)
+    }, [debouncedSearchTerm])
 
     return (
         <main>
