@@ -1,3 +1,9 @@
+[![Built with React](https://img.shields.io/badge/built%20with-React-61DAFB?logo=react)](https://reactjs.org/)
+[![Backend: Spring Boot](https://img.shields.io/badge/backend-Spring%20Boot-6DB33F?logo=spring)](https://spring.io/projects/spring-boot)
+[![Elasticsearch](https://img.shields.io/badge/search-Elasticsearch-005571?logo=elasticsearch)](https://www.elastic.co/elasticsearch/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Docker](https://img.shields.io/badge/container-Docker-2496ED?logo=docker)](https://www.docker.com/)
+
 # Movie Search Application
 
 A **containerized full-stack movie search application** built using **React**, **Spring Boot**, and **Elasticsearch**.  
@@ -24,7 +30,6 @@ This project allows users to search for movies with real-time fuzzy search capab
 - [Frontend (React)](#frontend-react)
 - [Backend (Spring Boot)](#backend-spring-boot)
 - [API Endpoints](#api-endpoints)
-- [Sample Data](#sample-data)
 - [License](#license)
 
 ---
@@ -133,19 +138,6 @@ The backend handles all data interactions with Elasticsearch.
 | POST   | `/v1/movies-data/saveMovie`   | Save a new movie               |
 | PUT    | `/v1/movies-data/update/{id}` | Update an existing movie by ID |
 | DELETE | `/v1/movies-data/delete/{id}` | Delete a movie by ID           |
-
----
-
-## Sample Data
-
-{
-"id": "CZ8MVpsByTg0RcAF22zl",
-"movieName": "Mersal",
-"releaseDate": "2020-12-12",
-"ogLanguage": "தமிழ்",
-"voteAvg": 10.0,
-"posterPath": "https://m.media-amazon.com/images/I/71Gm-mdz+UL._UF1000,1000_QL80_.jpg"
-}
 
 ---
 
