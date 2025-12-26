@@ -137,11 +137,12 @@ The backend handles all data interactions with Elasticsearch.
 
 ### Application UI
 
-![Frontend Screenshot](path/to/frontend-screenshot.png)
+![Frontend Screenshot](./screenshots/1.png)
+![Frontend Screenshot-2](./screenshots/2.png)
 
 ### Postman Request Example
 
-![Postman Screenshot](path/to/postman-screenshot.png)
+![Postman Screenshot](./screenshots/postman_save_movie.png)
 
 ---
 
