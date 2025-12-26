@@ -3,13 +3,21 @@
 A **containerized full-stack movie search application** built using **React**, **Spring Boot**, and **Elasticsearch**.  
 This project allows users to search for movies with real-time fuzzy search capabilities and manage movie data through RESTful APIs.
 
+### Application UI
+
+![Frontend Screenshot-2](./screenshots/2.png)
+![Frontend Screenshot](./screenshots/1.png)
+
+### Postman Request Example
+
+![Postman Screenshot](./screenshots/postman_save_movie.png)
+
 ---
 
 ## Table of Contents
 
 - [Overview](#overview)
 - [Architecture](#architecture)
-- [Screenshots](#screenshots)
 - [Tech Stack](#tech-stack)
 - [Features](#features)
 - [Application Setup](#application-setup)
@@ -48,19 +56,6 @@ Movie data can be added, updated, and deleted via dedicated backend endpoints, t
 
 The frontend communicates with the backend via RESTful APIs.  
 The backend handles all data interactions with Elasticsearch.
-
----
-
-## Screenshots
-
-### Application UI
-
-![Frontend Screenshot-2](./screenshots/2.png)
-![Frontend Screenshot](./screenshots/1.png)
-
-### Postman Request Example
-
-![Postman Screenshot](./screenshots/postman_save_movie.png)
 
 ---
 
