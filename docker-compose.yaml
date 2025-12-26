@@ -28,6 +28,14 @@ services:
     depends_on:
       elasticsearch:
         condition: service_healthy
+  nginx-server-svc:
+    image: my-react-nginx-server
+    container_name: my-react-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx-server/my-nginx-conf:/etc/nginx/conf.d:ro
+      - ./nginx-server/data:/usr/share/nginx/html:ro
 
 volumes:
   esdata:
