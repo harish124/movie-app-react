@@ -9,6 +9,7 @@ This project allows users to search for movies with real-time fuzzy search capab
 
 - [Overview](#overview)
 - [Architecture](#architecture)
+- [Screenshots](#screenshots)
 - [Tech Stack](#tech-stack)
 - [Features](#features)
 - [Application Setup](#application-setup)
@@ -16,7 +17,6 @@ This project allows users to search for movies with real-time fuzzy search capab
 - [Backend (Spring Boot)](#backend-spring-boot)
 - [API Endpoints](#api-endpoints)
 - [Sample Data](#sample-data)
-- [Screenshots](#screenshots)
 - [License](#license)
 
 ---
@@ -48,6 +48,19 @@ Movie data can be added, updated, and deleted via dedicated backend endpoints, t
 
 The frontend communicates with the backend via RESTful APIs.  
 The backend handles all data interactions with Elasticsearch.
+
+---
+
+## Screenshots
+
+### Application UI
+
+![Frontend Screenshot-2](./screenshots/2.png)
+![Frontend Screenshot](./screenshots/1.png)
+
+### Postman Request Example
+
+![Postman Screenshot](./screenshots/postman_save_movie.png)
 
 ---
 
@@ -138,19 +151,6 @@ The backend handles all data interactions with Elasticsearch.
 "voteAvg": 10.0,
 "posterPath": "https://m.media-amazon.com/images/I/71Gm-mdz+UL._UF1000,1000_QL80_.jpg"
 }
-
----
-
-## Screenshots
-
-### Application UI
-
-![Frontend Screenshot](./screenshots/1.png)
-![Frontend Screenshot-2](./screenshots/2.png)
-
-### Postman Request Example
-
-![Postman Screenshot](./screenshots/postman_save_movie.png)
 
 ---
 
