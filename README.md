@@ -72,9 +72,12 @@ The backend handles all data interactions with Elasticsearch.
 
 ## Application Setup
 
-1. Clone this repository  
+1. Clone this repository
+
+```
    git clone https://github.com/harish124/movie-app-react.git
    cd movie-app-react/
+```
 
 2. Ensure Docker and Docker Compose are installed.
 
