@@ -81,8 +81,11 @@ The backend handles all data interactions with Elasticsearch.
 
 2. Ensure Docker and Docker Compose are installed.
 
-3. Build and run the containers:  
+3. Build and run the containers:
+
+```
    docker-compose up -d
+```
 
 4. Access the applications:
 
