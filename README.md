@@ -11,8 +11,16 @@ This project allows users to search for movies with real-time fuzzy search capab
 
 ### Application UI
 
+## HomePage
+
 ![Frontend Screenshot-1](./screenshots/1.png)
+
+## Search Feature - Fuzzy Search
+
 ![Frontend Screenshot-2](./screenshots/2.png)
+
+## Paginated Results
+
 ![Frontend Screenshot-3](./screenshots/3.png)
 
 ### Postman Request Example
