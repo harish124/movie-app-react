@@ -13,6 +13,7 @@ This project allows users to search for movies with real-time fuzzy search capab
 
 ![Frontend Screenshot-1](./screenshots/1.png)
 ![Frontend Screenshot-2](./screenshots/2.png)
+![Frontend Screenshot-3](./screenshots/3.png)
 
 ### Postman Request Example
 
