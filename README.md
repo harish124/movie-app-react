@@ -39,6 +39,7 @@ This project allows users to search for movies with real-time fuzzy search capab
 - [Frontend (React)](#frontend-react)
 - [Backend (Spring Boot)](#backend-spring-boot)
 - [API Endpoints](#api-endpoints)
+- [FAQ's](#FAQ's)
 - [License](#license)
 
 ---
@@ -153,6 +154,18 @@ The backend handles all data interactions with Elasticsearch.
 | POST   | `/v1/movies-data/saveMovie`   | Save a new movie               |
 | PUT    | `/v1/movies-data/update/{id}` | Update an existing movie by ID |
 | DELETE | `/v1/movies-data/delete/{id}` | Delete a movie by ID           |
+
+---
+
+## FAQ's
+
+### Q. I get an error when running `docker-compose up -d` saying `app.jar` not found. Why does this happen and how can I fix it?
+
+**Ans.** This error occurs because JAR files are not committed to GitHub, so Docker cannot find `app.jar` when the containers are started. To resolve this, build the Spring Boot application locally by running `mvn clean package` from your IDE or terminal. This command will generate the JAR file inside the `target` directory. Next, navigate to `/backend/movie`, create a directory named `jars`, move the generated JAR file into this directory, and rename it to `app.jar`. After completing these steps, run `docker-compose up -d` again and the application should start successfully.
+
+### Q2. I made changes to the React code and Spring Boot code, but after stopping and restarting `docker-compose`, the changes are not reflected. Why?
+
+**Ans.** This happens because Docker reuses the existing images and does not automatically rebuild them when the source code changes. To apply your updates, you need to remove the existing Docker images and rebuild them. First, stop and remove the running containers by executing `docker-compose down`. Then, list the available images using `docker images` and identify the image ID for your application. Remove the image using `docker rmi <image-id>`. Finally, run `docker-compose up --build -d` again to rebuild the images and start the containers with the updated code.
 
 ---
 
