@@ -82,6 +82,7 @@ The backend handles all data interactions with Elasticsearch.
 ## Features
 
 - Movie search using fuzzy matching with Elasticsearch
+- Efficient pagination for large datasets, with page number and page size support
 - List all movies with a single API request
 - Add, update, or delete movies through backend endpoints
 - Containerized setup for easy deployment
