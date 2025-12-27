@@ -11,8 +11,8 @@ This project allows users to search for movies with real-time fuzzy search capab
 
 ### Application UI
 
+![Frontend Screenshot-1](./screenshots/1.png)
 ![Frontend Screenshot-2](./screenshots/2.png)
-![Frontend Screenshot](./screenshots/1.png)
 
 ### Postman Request Example
 
@@ -75,7 +75,7 @@ The backend handles all data interactions with Elasticsearch.
 - **Backend:** Spring Boot (Java)
 - **Search Engine:** Elasticsearch
 - **Containerization:** Docker
-- **Build Tools:** Maven, npm/yarn
+- **Build Tools:** Maven, npm
 
 ---
 
@@ -131,10 +131,10 @@ The backend handles all data interactions with Elasticsearch.
 
 ### Public Endpoints
 
-| Method | Endpoint                                               | Description                                                 |
-| ------ | ------------------------------------------------------ | ----------------------------------------------------------- |
-| GET    | `/v1/movies-data/getMovies`                            | Fetch all movies                                            |
-| GET    | `/v1/movies-data/getMoviesContainingChars?characters=` | Fetch all movies containing given characters (fuzzy search) |
+| Method | Endpoint                                                               | Description                                                 |
+| ------ | ---------------------------------------------------------------------- | ----------------------------------------------------------- |
+| GET    | `/v1/movies-data/getMovies?page=&pageSize=`                            | Fetch all movies                                            |
+| GET    | `/v1/movies-data/getMoviesContainingChars?characters=&page=&pageSize=` | Fetch all movies containing given characters (fuzzy search) |
 
 ### Admin/Private Endpoints (for managing data)
 
