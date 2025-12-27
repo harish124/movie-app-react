@@ -6,11 +6,11 @@ import com.app.movie.repo.MoviesRepo;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 
 @Service
 @RequiredArgsConstructor
@@ -18,14 +18,14 @@ public class MoviesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(MoviesService.class);
     private final MoviesRepo moviesRepo;
 
-    public List<Movie> getMovies() {
-        var moviesIterable = moviesRepo.findAll();
-        return StreamSupport.stream(moviesIterable.spliterator(), false)
-                .toList();
+    public Page<Movie> getMovies(int page, int pageSize) {
+        var pageRequest = PageRequest.of(page, pageSize);
+        return moviesRepo.findAll(pageRequest);
     }
 
-    public List<Movie> getMoviesContainingChars(final String characters) {
-        return moviesRepo.findByMovieNameFuzzy(characters);
+    public Page<Movie> getMoviesContainingChars(final String characters, int page, int pageSize) {
+        var pageRequest = PageRequest.of(page, pageSize);
+        return moviesRepo.findByMovieNameFuzzy(characters, pageRequest);
     }
 
     public Movie saveMovie(Movie movie) {

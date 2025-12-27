@@ -1,11 +1,11 @@
 package com.app.movie.repo;
 
 import com.app.movie.model.Movie;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.annotations.Query;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface MoviesRepo extends ElasticsearchRepository<Movie, String> {
@@ -21,5 +21,5 @@ public interface MoviesRepo extends ElasticsearchRepository<Movie, String> {
             "]" +
             "}" +
             "}")
-    List<Movie> findByMovieNameFuzzy(String name);
+    Page<Movie> findByMovieNameFuzzy(String name, PageRequest pageRequest);
 }

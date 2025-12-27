@@ -2,6 +2,7 @@ package com.app.movie.controller;
 
 
 import com.app.movie.model.Movie;
+import com.app.movie.repo.dto.PaginatedResponse;
 import com.app.movie.service.MoviesService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -22,9 +23,53 @@ public class MoviesController {
 
     private final MoviesService moviesService;
 
+    private static PaginatedResponse<String> checkPageRequirements(int page, int pageSize, int totalPages) {
+        if (page <= 0 || pageSize <= 0) {
+            var response = new PaginatedResponse<String>();
+            response.setPage(page);
+            response.setPageSize(pageSize);
+            var errorMsg = "Page/PageSize can't be less than 1";
+            response.setContent(List.of(errorMsg));
+            return response;
+        }
+        if (pageSize > 25) {
+            var response = new PaginatedResponse<String>();
+            response.setPage(page);
+            response.setPageSize(pageSize);
+            var errorMsg = "PageSize can't be greater than 25";
+            response.setContent(List.of(errorMsg));
+            return response;
+        }
+
+        if (page > totalPages) {
+            var response = new PaginatedResponse<String>();
+            response.setPage(page);
+            response.setPageSize(pageSize);
+            response.setTotalPages(totalPages);
+            var errorMsg = "Page can't be greater than totalPages";
+            response.setContent(List.of(errorMsg));
+            return response;
+        }
+        return null;
+    }
+
     @RequestMapping("/getMovies")
-    public List<Movie> getMovies() {
-        return moviesService.getMovies();
+    public PaginatedResponse<?> getMovies(@RequestParam(value = "page", defaultValue = "1") int page,
+                                          @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
+        var response = checkPageRequirements(page, pageSize, Integer.MAX_VALUE);
+        if (response != null) return response;
+
+        var moviePage = moviesService.getMovies(page - 1, pageSize);
+        response = checkPageRequirements(page, pageSize, moviePage.getTotalPages());
+        if (response != null) return response;
+
+        var moviePaginatedResponse = new PaginatedResponse<Movie>();
+        moviePaginatedResponse.setContent(moviePage.getContent());
+        moviePaginatedResponse.setPage(moviePage.getNumber() + 1);
+        moviePaginatedResponse.setPageSize(moviePage.getSize());
+        moviePaginatedResponse.setTotalPages(moviePage.getTotalPages());
+        moviePaginatedResponse.setTotalResults(moviePage.getTotalElements());
+        return moviePaginatedResponse;
     }
 
     @DeleteMapping("/delete/{id}")
@@ -39,8 +84,24 @@ public class MoviesController {
 
 
     @RequestMapping("/getMoviesContainingChars")
-    public List<Movie> getMovies(@RequestParam String characters) {
-        return moviesService.getMoviesContainingChars(characters);
+    public PaginatedResponse<?> getMovies(@RequestParam String characters,
+                                          @RequestParam(value = "page", defaultValue = "1") int page,
+                                          @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
+
+        var response = checkPageRequirements(page, pageSize, Integer.MAX_VALUE);
+        if (response != null) return response;
+
+        var moviePage = moviesService.getMoviesContainingChars(characters, page - 1, pageSize);
+        response = checkPageRequirements(page, pageSize, moviePage.getTotalPages());
+        if (response != null) return response;
+
+        var moviePaginatedResponse = new PaginatedResponse<Movie>();
+        moviePaginatedResponse.setContent(moviePage.getContent());
+        moviePaginatedResponse.setPage(moviePage.getNumber() + 1);
+        moviePaginatedResponse.setPageSize(moviePage.getSize());
+        moviePaginatedResponse.setTotalPages(moviePage.getTotalPages());
+        moviePaginatedResponse.setTotalResults(moviePage.getTotalElements());
+        return moviePaginatedResponse;
     }
 
     @PostMapping("/saveMovie")
@@ -54,14 +115,14 @@ public class MoviesController {
     public Movie updateMovie(@PathVariable String id, @RequestBody Movie updatedMovie) {
         return moviesService.findById(id)
                 .map(existingMovie -> {
-            existingMovie.setMovieName(updatedMovie.getMovieName());
-            existingMovie.setVoteAvg(updatedMovie.getVoteAvg());
-            existingMovie.setReleaseDate(updatedMovie.getReleaseDate());
-            existingMovie.setOgLanguage(updatedMovie.getOgLanguage());
-            existingMovie.setPosterPath(updatedMovie.getPosterPath());
+                    existingMovie.setMovieName(updatedMovie.getMovieName());
+                    existingMovie.setVoteAvg(updatedMovie.getVoteAvg());
+                    existingMovie.setReleaseDate(updatedMovie.getReleaseDate());
+                    existingMovie.setOgLanguage(updatedMovie.getOgLanguage());
+                    existingMovie.setPosterPath(updatedMovie.getPosterPath());
 
-            return moviesService.saveMovie(existingMovie);
-        }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not found"));
+                    return moviesService.saveMovie(existingMovie);
+                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not found"));
     }
 
 
