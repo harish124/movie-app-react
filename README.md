@@ -7,7 +7,7 @@
 # Movie Search Application
 
 A **containerized full-stack movie search application** built using **React**, **Spring Boot**, and **Elasticsearch**.  
-This project allows users to search for movies with real-time fuzzy search capabilities and manage movie data through RESTful APIs.
+This project allows users to search for movies with real-time fuzzy search capabilities, browse results with pagination and manage movie data through RESTful APIs.
 
 ### Application UI
 
