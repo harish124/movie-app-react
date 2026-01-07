@@ -1,4 +1,4 @@
-package com.app.movie.repo.dto;
+package com.app.movie.dto;
 
 import lombok.Data;
 
