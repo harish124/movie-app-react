@@ -35,6 +35,7 @@ This project allows users to search for movies with real-time fuzzy search capab
 - [Architecture](#architecture)
 - [Tech Stack](#tech-stack)
 - [Features](#features)
+- [Swagger](#swagger-documentation)
 - [Application Setup](#application-setup)
 - [Frontend (React)](#frontend-react)
 - [Backend (Spring Boot)](#backend-spring-boot)
@@ -99,6 +100,37 @@ The backend handles all data interactions with Elasticsearch.
 
 ---
 
+## Swagger Documentation
+
+I have used **Swagger UI** to provide interactive API documentation for the Movie API. With Swagger UI, you can easily explore the available endpoints, understand the request/response structure, and try out the API calls directly from the browser.
+
+### How to Access Swagger UI
+
+Once the application is up and running, you can access the Swagger UI by visiting the following URL:
+http://domain-name:port/swagger-ui.html
+For ex: http://localhost:8083/swagger-ui.html
+
+This page will display a list of all available API endpoints, including descriptions of each operation, expected responses, request parameters, and response models.
+
+### Swagger Features
+
+- **Interactive Documentation**: You can interact with the API by sending requests directly from the Swagger UI.
+- **Response Codes**: Each API operation provides response codes and descriptions (e.g., `200 OK`, `404 Not Found`).
+- **Request/Response Examples**: The UI shows example requests and responses, making it easier to understand how to interact with the API.
+- **Filtering and Searching**: Easily filter and search through the API operations to find what you need.
+
+### Swagger Annotations
+
+The API is documented using **Springdoc OpenAPI**, which automatically generates the Swagger UI from annotations in the code. Here's how it works:
+
+- **`@Operation`**: Describes the summary and details of each endpoint.
+- **`@ApiResponse`**: Specifies the possible HTTP responses for each operation.
+- **`@ApiResponses`**: Groups multiple responses for an endpoint, allowing for detailed API documentation.
+
+This allows you to easily interact with the API in a user-friendly interface while providing full visibility into the available API features.
+
+---
+
 ## Application Setup
 
 1. Clone this repository
@@ -142,18 +174,18 @@ The backend handles all data interactions with Elasticsearch.
 
 ### Public Endpoints
 
-| Method | Endpoint                                                               | Description                                                 |
-| ------ | ---------------------------------------------------------------------- | ----------------------------------------------------------- |
-| GET    | `/v1/movies-data/getMovies?page=&pageSize=`                            | Fetch all movies                                            |
-| GET    | `/v1/movies-data/getMoviesContainingChars?characters=&page=&pageSize=` | Fetch all movies containing given characters (fuzzy search) |
+| Method | Endpoint                                 | Description                                                 |
+| ------ | ---------------------------------------- | ----------------------------------------------------------- |
+| GET    | `/v1/movies?characters=&page=&pageSize=` | Fetch all movies containing given characters (fuzzy search) |
+| PUT    | `/v1/movies/{id}`                        | Update an existing movie by ID                              |
 
 ### Admin/Private Endpoints (for managing data)
 
-| Method | Endpoint                      | Description                    |
-| ------ | ----------------------------- | ------------------------------ |
-| POST   | `/v1/movies-data/saveMovie`   | Save a new movie               |
-| PUT    | `/v1/movies-data/update/{id}` | Update an existing movie by ID |
-| DELETE | `/v1/movies-data/delete/{id}` | Delete a movie by ID           |
+| Method | Endpoint          | Description          |
+| ------ | ----------------- | -------------------- |
+| POST   | `/v1/movies`      | Save a new movie     |
+| DELETE | `/v1/movies`      | Deletes all movies   |
+| DELETE | `/v1/movies/{id}` | Delete a movie by ID |
 
 ---
 
