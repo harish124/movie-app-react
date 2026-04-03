@@ -1,6 +1,7 @@
 package com.app.movie.service;
 
 
+import com.app.movie.dto.PaginatedResponse;
 import com.app.movie.model.Movie;
 import com.app.movie.repo.MoviesRepo;
 import lombok.RequiredArgsConstructor;
@@ -17,14 +18,23 @@ import java.util.Optional;
 public class MoviesService {
     private final MoviesRepo moviesRepo;
 
-    public Page<Movie> getMovies(String characters, int page, int pageSize) {
+    public PaginatedResponse<Movie> getMovies(String characters, int page, int pageSize) {
         var pageRequest = PageRequest.of(page, pageSize);
+        Page<Movie> moviePage;
 
         if (characters != null && !characters.isEmpty()) {
-            return moviesRepo.findByMovieNameFuzzy(characters, pageRequest);
+            moviePage = moviesRepo.findByMovieNameFuzzy(characters, pageRequest);
         } else {
-            return moviesRepo.findAll(pageRequest);
+            moviePage = moviesRepo.findAll(pageRequest);
         }
+
+        var moviePaginatedResponse = new PaginatedResponse<Movie>();
+        moviePaginatedResponse.setContent(moviePage.getContent());
+        moviePaginatedResponse.setPage(moviePage.getNumber() + 1);
+        moviePaginatedResponse.setPageSize(moviePage.getSize());
+        moviePaginatedResponse.setTotalPages(moviePage.getTotalPages());
+        moviePaginatedResponse.setTotalResults(moviePage.getTotalElements());
+        return moviePaginatedResponse;
     }
 
     public Movie saveMovie(Movie movie) {

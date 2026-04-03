@@ -65,13 +65,7 @@ public class MoviesController implements MoviesApi {
         response = checkPageRequirements(page, pageSize, moviePage.getTotalPages());
         if (response != null) return response;
 
-        var moviePaginatedResponse = new PaginatedResponse<Movie>();
-        moviePaginatedResponse.setContent(moviePage.getContent());
-        moviePaginatedResponse.setPage(moviePage.getNumber() + 1);
-        moviePaginatedResponse.setPageSize(moviePage.getSize());
-        moviePaginatedResponse.setTotalPages(moviePage.getTotalPages());
-        moviePaginatedResponse.setTotalResults(moviePage.getTotalElements());
-        return moviePaginatedResponse;
+        return moviePage;
     }
 
     @DeleteMapping("/{id}")
